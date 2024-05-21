@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>raport.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h3 id="rapport-danalyse-et-de-mod%C3%A9lisation-des-donn%C3%A9es-du-play-store">Rapport d'Analyse et de Modélisation des Données du Play Store</h3>
+<h2 id="%E2%85%B0---introduction">Ⅰ - Introduction</h2>
+<p>Dans le cadre de ce projet, nous avons analysé des données provenant du Play Store afin d'aider deux utilisateurs spécifiques, Mme Ajmi et M. Demoli, à sélectionner les applications les plus pertinentes en fonction de leurs intérêts et préférences. Les utilisateurs sont souvent confrontés à un grand nombre d'applications similaires, rendant difficile la sélection de l'application la plus adaptée à leurs besoins spécifiques.</p>
+<p>Les données utilisées proviennent de deux fichiers principaux du Play Store : <code>googleplaystore.csv</code> pour les informations sur les applications et <code>googleplaystore_user_reviews.csv</code> pour les avis des utilisateurs. Ces données incluent des attributs tels que le nom de l'application, la catégorie, la note, le nombre de téléchargements, le type (gratuite ou payante), le prix, et le groupe d'âge cible.</p>
+<p>L'objectif est de filtrer et recommander les applications adaptées aux intérêts spécifiques des utilisateurs. Mme Ajmi est intéressée par les applications de &quot;FAMILY&quot; et &quot;BUSINESS&quot;, tandis que M. Demoli cherche des applications de &quot;TOOLS&quot; et &quot;PRODUCTIVITY&quot;. Nous avons appliqué diverses techniques de machine learning pour atteindre cet objectif, en utilisant des méthodes comme la régression logistique, le K-Nearest Neighbors (KNN) et les arbres de décision, en les calibrant et en optimisant leurs paramètres pour obtenir les meilleurs résultats possibles.</p>
+<hr>
+<h2 id="%E2%85%B1---qualit%C3%A9-et-justifications-des-choix-danalyse">Ⅱ - Qualité et Justifications des Choix d'Analyse</h2>
+<h3 id="pr%C3%A9paration-des-donn%C3%A9es">Préparation des Données</h3>
+<ol>
+<li>
+<p><strong>Nettoyage des Données</strong> :</p>
+<ul>
+<li>Les valeurs manquantes critiques ont été supprimées pour éviter les biais dans l'analyse.</li>
+<li>Les colonnes catégorielles (<code>Type</code>, <code>Content Rating</code>) ont été encodées en variables numériques à l'aide de <code>OneHotEncoder</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Filtrage des Données</strong> :</p>
+<ul>
+<li>Les données ont été filtrées pour ne conserver que les catégories pertinentes pour Mme Ajmi (<code>FAMILY</code>, <code>BUSINESS</code>) et M. Demoli (<code>TOOLS</code>, <code>PRODUCTIVITY</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Normalisation des Données</strong> :</p>
+<ul>
+<li>Les colonnes <code>Rating</code>, <code>Installs</code>, et <code>Reviews</code> ont été normalisées pour mettre toutes les valeurs sur une échelle commune de 0 à 1, assurant une comparabilité optimale des caractéristiques.</li>
+</ul>
+</li>
+</ol>
+<h3 id="visualisations">Visualisations</h3>
+<ol>
+<li>
+<p><strong>Distribution des Catégories d'Applications</strong> :</p>
+<ul>
+<li>Un diagramme en barres a été utilisé pour visualiser la distribution des applications par catégorie, permettant de comprendre la répartition des applications.</li>
+</ul>
+</li>
+<li>
+<p><strong>Distribution des Ratings par Catégorie</strong> :</p>
+<ul>
+<li>Un boxplot a été utilisé pour montrer la distribution des notes par catégorie, facilitant l'identification des tendances et des outliers.</li>
+</ul>
+</li>
+<li>
+<p><strong>Distribution des Prix</strong> :</p>
+<ul>
+<li>Un histogramme a été utilisé pour visualiser la distribution des prix des applications, montrant la majorité des applications gratuites ou à faible coût.</li>
+</ul>
+</li>
+<li>
+<p><strong>Applications les Plus Populaires</strong> :</p>
+<ul>
+<li>Une analyse a été effectuée pour identifier les applications les plus populaires dans chaque catégorie, basée sur le nombre d'installations et la note moyenne.</li>
+</ul>
+</li>
+<li>
+<p><strong>Tendance des Notes au Fil du Temps</strong> :</p>
+<ul>
+<li>Un graphique linéaire a été utilisé pour montrer l'évolution des notes moyennes des applications au fil des ans, permettant de visualiser les tendances de qualité des applications.</li>
+</ul>
+</li>
+</ol>
+<h3 id="analyse-des-sentiments-des-avis-utilisateurs">Analyse des Sentiments des Avis Utilisateurs</h3>
+<ol>
+<li>
+<p><strong>Polarité et Subjectivité</strong> :</p>
+<ul>
+<li>Les distributions de la polarité et de la subjectivité des sentiments ont été analysées à l'aide d'histogrammes avec une courbe de densité, fournissant des insights sur les avis des utilisateurs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Prédiction de la Polarité et de la Subjectivité</strong> :</p>
+<ul>
+<li>Des modèles de machine learning ont été utilisés pour prédire la polarité et la subjectivité des avis, permettant d'évaluer automatiquement les sentiments des utilisateurs et d'améliorer les recommandations d'applications.</li>
+</ul>
+</li>
+</ol>
+<p>Ces choix d'analyse et de visualisation permettent de répondre aux questions d'intérêt des utilisateurs et de fournir des recommandations d'applications précises et pertinentes, améliorant ainsi leur expérience sur le Play Store.</p>
+<hr>
+<h2 id="%E2%85%B2---qualit%C3%A9-des-visualisations">Ⅲ - Qualité des Visualisations</h2>
+<h3 id="lisibilit%C3%A9-et-clart%C3%A9">Lisibilité et Clarté</h3>
+<p>Toutes les visualisations ont été conçues pour être facilement compréhensibles. Les titres, les axes et les légendes sont clairement étiquetés. Les diagrammes en barres et les boxplots utilisent des couleurs contrastées pour améliorer la lisibilité. Les histogrammes sont accompagnés de courbes de densité pour mieux représenter les distributions.</p>
+<h3 id="choix-des-visualisations">Choix des Visualisations</h3>
+<p>Les types de visualisations ont été choisis en fonction de l'analyse effectuée :</p>
+<ul>
+<li>Les diagrammes en barres pour montrer la distribution des catégories.</li>
+<li>Les boxplots pour comparer les distributions des ratings entre différentes catégories.</li>
+<li>Les histogrammes pour analyser les distributions des prix, de la polarité et de la subjectivité.</li>
+<li>Les graphiques linéaires pour observer les tendances temporelles.</li>
+</ul>
+<h3 id="originalit%C3%A9-et-validit%C3%A9-des-conclusions">Originalité et Validité des Conclusions</h3>
+<p>Les conclusions tirées des visualisations sont basées sur des observations claires et cohérentes. Par exemple, l'analyse de la distribution des prix montre que la majorité des applications sont gratuites ou peu coûteuses, ce qui est cohérent avec les attentes des utilisateurs. La distribution des ratings par catégorie aide à identifier les catégories avec les meilleures notes, offrant ainsi des recommandations pertinentes.</p>
+<hr>
+<h2 id="%E2%85%B3---protocole-de-pr%C3%A9paration-des-donn%C3%A9es-pour-la-mod%C3%A9lisation">Ⅳ - Protocole de Préparation des Données pour la Modélisation</h2>
+<h3 id="protocole-de-pr%C3%A9paration-des-donn%C3%A9es-pour-la-mod%C3%A9lisation">Protocole de Préparation des Données pour la Modélisation</h3>
+<ol>
+<li>
+<p><strong>Séparation des Données</strong> :</p>
+<ul>
+<li>Les données utilisées proviennent du fichier <code>googleplaystore.csv</code> pour les caractéristiques des applications et du fichier <code>googleplaystore_user_reviews.csv</code> pour les avis des utilisateurs.</li>
+<li>Les colonnes pertinentes incluent : <code>App</code>, <code>Category</code>, <code>Rating</code>, <code>Reviews</code>, <code>Size</code>, <code>Installs</code>, <code>Type</code>, <code>Price</code>, <code>Content Rating</code>, <code>Genres</code>, <code>Last Updated</code>, <code>Current Ver</code>, <code>Android Ver</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Préparation des Données</strong> :</p>
+<ul>
+<li>Les valeurs manquantes ont été traitées en supprimant les lignes avec des valeurs manquantes critiques.</li>
+<li>Les colonnes catégorielles (<code>Type</code>, <code>Content Rating</code>) ont été encodées en variables numériques à l'aide de <code>OneHotEncoder</code>.</li>
+<li>Les caractéristiques non numériques inutiles pour la modélisation ont été exclues.</li>
+</ul>
+</li>
+<li>
+<p><strong>Séparation Apprentissage/Test</strong> :</p>
+<ul>
+<li>Les données ont été divisées en ensembles d'apprentissage (80%) et de test (20%) en utilisant <code>train_test_split</code> avec un état aléatoire (random_state=42) pour assurer la reproductibilité.</li>
+<li>Cette séparation permet de former le modèle sur un sous-ensemble des données et de l'évaluer sur un sous-ensemble séparé pour tester sa performance sur des données non vues.</li>
+</ul>
+</li>
+</ol>
+<h3 id="mod%C3%A9lisation-et-%C3%A9valuation-avec-r%C3%A9gression-logistique">Modélisation et Évaluation avec Régression Logistique</h3>
+<ol>
+<li>
+<p><strong>Modélisation</strong> :</p>
+<ul>
+<li>Le modèle de régression logistique a été entraîné sur les données d'apprentissage et évalué sur l'ensemble de test.</li>
+<li>Précision obtenue : 67.94%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Résultats de la Prédiction</strong> :</p>
+<ul>
+<li>Les résultats montrent que la régression logistique capture bien certaines relations linéaires, mais sa précision reste modérée.</li>
+</ul>
+</li>
+</ol>
+<h3 id="conclusion-des-pr%C3%A9dictions-pour-mme-ajmi-et-m-demoli">Conclusion des Prédictions pour Mme Ajmi et M. Demoli</h3>
+<ol>
+<li>
+<p><strong>Mme Ajmi</strong> :</p>
+<ul>
+<li>Les applications recommandées sont principalement des applications &quot;FAMILY&quot; et &quot;BUSINESS&quot;.</li>
+<li>Exemple : &quot;Google Play Games&quot;, &quot;OfficeSuite : Free Office + PDF Editor&quot;.</li>
+</ul>
+</li>
+<li>
+<p><strong>M. Demoli</strong> :</p>
+<ul>
+<li>Les applications recommandées sont principalement des applications &quot;TOOLS&quot; et &quot;PRODUCTIVITY&quot;.</li>
+<li>Exemple : &quot;Google Drive&quot;, &quot;Google Translate&quot;.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="mod%C3%A9lisation-avec-k-nearest-neighbors-knn">Modélisation avec K-Nearest Neighbors (KNN)</h2>
+<h3 id="analyse-et-%C3%A9valuation-avec-k-nearest-neighbors-knn">Analyse et Évaluation avec K-Nearest Neighbors (KNN)</h3>
+<ol>
+<li>
+<p><strong>Sans Standardisation</strong> :</p>
+<ul>
+<li>Précision : 64.43%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Avec Standardisation</strong> :</p>
+<ul>
+<li>Précision : 72.73%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Optimisation des Hyperparamètres</strong> :</p>
+<ul>
+<li>Utilisation de <code>GridSearchCV</code> pour trouver le meilleur <code>n_neighbors</code>.</li>
+<li>Précision optimale avec <code>n_neighbors=17</code> : 74.36%.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="%C3%A9valuation-avec-distance-de-manhattan">Évaluation avec Distance de Manhattan</h2>
+<ol>
+<li>
+<p><strong>KNN avec Distance de Manhattan</strong> :</p>
+<ul>
+<li>Précision : 73.05%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Sélection des Meilleures Caractéristiques</strong> :</p>
+<ul>
+<li>Utilisation de <code>SelectKBest</code> pour sélectionner les 10 meilleures caractéristiques.</li>
+<li>Précision : 71.93%.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="mod%C3%A9lisation-et-%C3%A9valuation-avec-un-arbre-de-d%C3%A9cision">Modélisation et Évaluation avec un Arbre de Décision</h3>
+<ol>
+<li>
+<p><strong>Arbre de Décision avec Profondeur Max 5</strong> :</p>
+<ul>
+<li>Précision : 73.21%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Arbre de Décision avec Profondeur Max 3</strong> :</p>
+<ul>
+<li>Précision : 72.57%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ajustement de la Visualisation</strong> :</p>
+<ul>
+<li>Utilisation de <code>plot_tree</code> pour visualiser l'arbre de décision.</li>
+</ul>
+</li>
+</ol>
+<h3 id="normalisation-des-donn%C3%A9es">Normalisation des Données</h3>
+<ol>
+<li><strong>MinMaxScaler</strong> :
+<ul>
+<li>Normalisation des colonnes <code>Rating</code>, <code>Installs</code>, <code>Reviews</code>.</li>
+<li>Utilisation de la normalisation pour améliorer les performances des modèles.</li>
+</ul>
+</li>
+</ol>
+<h3 id="analyse-de-la-normalisation-des-donn%C3%A9es">Analyse de la Normalisation des Données</h3>
+<p>La normalisation des données a permis d'améliorer les performances des modèles, en particulier le KNN, en assurant que toutes les caractéristiques sont sur une échelle commune.</p>
+<h3 id="pr%C3%A9diction">Prédiction</h3>
+<p>de la Polarité et de la Subjectivité des Avis</p>
+<ol>
+<li>
+<p><strong>Modèle de Polarité</strong> :</p>
+<ul>
+<li>Utilisation de la régression logistique.</li>
+<li>Précision : 87.61%.</li>
+</ul>
+</li>
+<li>
+<p><strong>Modèle de Subjectivité</strong> :</p>
+<ul>
+<li>Utilisation de RandomForestClassifier.</li>
+<li>Précision : 94.17%.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="%E2%85%B4---%C3%A9valuation-de-la-qualit%C3%A9-des-r%C3%A9sultats">Ⅴ - Évaluation de la Qualité des Résultats</h2>
+<h3 id="protocole-d%C3%A9valuation">Protocole d'Évaluation</h3>
+<ol>
+<li>
+<p><strong>Séparation des Données</strong> :</p>
+<ul>
+<li>Les données ont été divisées en ensembles d'apprentissage (80%) et de test (20%) pour évaluer la performance des modèles.</li>
+</ul>
+</li>
+<li>
+<p><strong>Validation Croisée</strong> :</p>
+<ul>
+<li>Utilisation de <code>GridSearchCV</code> pour optimiser les hyperparamètres du modèle KNN.</li>
+</ul>
+</li>
+</ol>
+<h3 id="tableau-des-r%C3%A9sultats-obtenus">Tableau des Résultats Obtenus</h3>
+<table>
+<thead>
+<tr>
+<th>Modèle</th>
+<th>Précision (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Régression Logistique</td>
+<td>67.94</td>
+</tr>
+<tr>
+<td>KNN (non standardisé)</td>
+<td>64.43</td>
+</tr>
+<tr>
+<td>KNN (standardisé)</td>
+<td>72.73</td>
+</tr>
+<tr>
+<td>KNN (optimisé, n_neighbors=17)</td>
+<td>74.36</td>
+</tr>
+<tr>
+<td>KNN (Distance de Manhattan)</td>
+<td>73.05</td>
+</tr>
+<tr>
+<td>KNN (Sélection des Caractéristiques)</td>
+<td>71.93</td>
+</tr>
+<tr>
+<td>Arbre de Décision (profondeur max 5)</td>
+<td>73.21</td>
+</tr>
+<tr>
+<td>Arbre de Décision (profondeur max 3)</td>
+<td>72.57</td>
+</tr>
+<tr>
+<td>Modèle de Polarité (Régression Logistique)</td>
+<td>87.61</td>
+</tr>
+<tr>
+<td>Modèle de Subjectivité (Random Forest)</td>
+<td>94.17</td>
+</tr>
+</tbody>
+</table>
+<h3 id="interpr%C3%A9tation-des-r%C3%A9sultats">Interprétation des Résultats</h3>
+<p><strong>Régression Logistique</strong> :</p>
+<ul>
+<li>Modèle simple et rapide avec une précision modérée.</li>
+</ul>
+<p><strong>K-Nearest Neighbors (KNN)</strong> :</p>
+<ul>
+<li>La standardisation et l'optimisation des hyperparamètres ont significativement amélioré la précision, faisant du KNN optimisé l'un des modèles les plus performants.</li>
+</ul>
+<p><strong>Arbre de Décision</strong> :</p>
+<ul>
+<li>Bonne capacité à capturer les relations non linéaires, mais avec une précision légèrement inférieure au KNN optimisé.</li>
+</ul>
+<p><strong>Évaluation avec Distance de Manhattan</strong> :</p>
+<ul>
+<li>La précision obtenue est compétitive avec les autres modèles testés.</li>
+</ul>
+<p><strong>Sélection des Meilleures Caractéristiques</strong> :</p>
+<ul>
+<li>La sélection a amélioré la précision, soulignant l'importance de cette étape dans le processus de modélisation.</li>
+</ul>
+<p><strong>Prédiction des Sentiments</strong> :</p>
+<ul>
+<li>Les modèles de polarité et de subjectivité des avis utilisateurs ont montré des précisions élevées, améliorant la capacité à comprendre les sentiments des utilisateurs.</li>
+</ul>
+<hr>
+<h3 id="conclusion-g%C3%A9n%C3%A9rale">Conclusion Générale</h3>
+<ol>
+<li>
+<p><strong>Meilleure Méthode</strong> :</p>
+<ul>
+<li>Le KNN optimisé avec <code>n_neighbors=17</code> a montré une des meilleures précisions (74.36%).</li>
+</ul>
+</li>
+<li>
+<p><strong>Interprétabilité</strong> :</p>
+<ul>
+<li>Les arbres de décision fournissent des insights précieux sur les critères de décision.</li>
+</ul>
+</li>
+<li>
+<p><strong>Simplicité et Rapidité</strong> :</p>
+<ul>
+<li>La régression logistique est rapide et simple, mais avec une précision inférieure.</li>
+</ul>
+</li>
+</ol>
+<p>Ces résultats permettent de fournir des recommandations d'applications précises et pertinentes à Mme Ajmi et M. Demoli, améliorant ainsi leur expérience sur le Play Store.</p>
+
+</body>
+</html>
